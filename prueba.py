@@ -6,12 +6,12 @@ n = int(input("Ingrese el tamaño de muestra (réplicas): "))
 
 # encerrar infinitos en rango [-10e6, 10e6]
 if lim_inf.lower() == '-inf':
-    lim_inf = -1e6
+    lim_inf = -1e3
 else:
     lim_inf = float(lim_inf)
 
 if lim_sup.lower() == 'inf':
-    lim_sup = 1e6
+    lim_sup = 1e3
 else:
     lim_sup = float(lim_sup)
 

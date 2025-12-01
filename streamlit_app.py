@@ -17,7 +17,7 @@ lim_sup_input = st.sidebar.text_input(
     "Límite superior (usar 'inf' para infinito)", value="1"
 )
 replicas = st.sidebar.number_input(
-    "Tamaño de muestra (réplicas)", min_value=1, max_value=200000, value=1000, step=100
+    "Tamaño de muestra (réplicas)", min_value=1, max_value=200000, value=100, step=100
 )
 N = st.sidebar.number_input(
     "Número de corridas (N)", min_value=1, max_value=200000, value=10000, step=1000
@@ -26,12 +26,12 @@ N = st.sidebar.number_input(
 # Parse inputs consistent with prueba.py behavior
 def parse_limits(lim_inf_str, lim_sup_str):
     if lim_inf_str.strip().lower() == "-inf":
-        lower = -1e6
+        lower = -1e3
     else:
         lower = float(lim_inf_str)
 
     if lim_sup_str.strip().lower() == "inf":
-        upper = 1e6
+        upper = 1e3
     else:
         upper = float(lim_sup_str)
     return lower, upper
@@ -66,10 +66,10 @@ if run:
             resultados = Montecarlo_Examen(N=N, replicas=replicas, lower=lower, upper=upper)
 
             st.subheader("Resultados")
-            st.write(f"Estimación de la integral (método crudo): `{resultados['Integral_Crudo']:.6f}`")
+            st.write(f"Estimación de la integral (método crudo): `{resultados['Integral_Crudo']:.4f}`")
 
             # Show heads of arrays for readability
-            st.write("Primeras 5 corridas (primeras 5 réplicas):")
+            st.write("Para las primeras 5 réplicas):")
             valores_head = resultados["Valores_Aleatorios"][:5, :5]
             alturas_head = resultados["Alturas_Funcion"][:5, :5]
             areas_head = resultados["Areas_Funcion"][:5]
